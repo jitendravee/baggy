@@ -1,23 +1,26 @@
-import express from 'express'
-import { Router } from 'react';
-import { signUp } from '../models/signUp.models';
-const router = express.Router()
+import express from 'express';
+import { Router } from 'express';  
+import { signUp } from '../models/signUp.models.js';
+import bcrypt from 'bcrypt';
+const router = Router();
 
-router.post('/',async (res,req) => {
+router.route('/').post(async (req, res) => { 
     try {
-        const newSignUp  = {
-userName: req.boby.userName,
-emailId: req.boby.emailId,
-password: req.boby.password,
-        };
-        const SignUp = await signUp.create(newSignUp);
+const securePassword = await bcrypt.hash(req.body.password, 10);
 
-        return response.status(201).send(signUp);
+        const newSignUp = {
+       userName:req.body.userName,
+            emailId: req.body.emailId,
+            password: securePassword,
+        };
+        const createdSignUp = await signUp.create(newSignUp);
+
+        return res.status(201).send(createdSignUp);  
 
     } catch (error) {
         console.log(error.message);
-        response.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
     }
-})
+});
 
-export default router
+export default router;
