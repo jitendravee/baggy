@@ -18,7 +18,7 @@ const SignUp = () => {
 
     setLoading(true);
 
-    axios.post('http://localhost:3500/signup', data)
+    axios.post('https://baggy-jitendravee.onrender.com/signup', data)
       .then(() => {
         setLoading(false);
         navigate('/');

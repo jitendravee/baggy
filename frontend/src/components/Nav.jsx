@@ -20,7 +20,7 @@ const Nav = () => {
    <input type='text' placeholder='Search' className='bg-[#ffb703] border-double border-2 border-[#023047]  text-md px-4 md:px-12 py-2 rounded-lg'/>
    <ul className='hidden md:flex flex-row text-lg gap-12'>
     <Link to='/signin'><li>SignIn</li></Link>
-    <Link to='/signin'><li>SignUp</li></Link>
+    <Link to='/signup'><li>SignUp</li></Link>
     <li className='flex flex-row items-center gap-2'><IoMdCart />Orders</li>
    </ul>
  
